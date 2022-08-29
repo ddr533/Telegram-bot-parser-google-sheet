@@ -16,20 +16,20 @@ hair2 = sheet.get_values('A18:AF24')       #парикмахерская 2
 hair3 = sheet.get_values('A28:AF33')       #парикмахерская 3
 hair4 = sheet.get_values('A38:AF41')       #парикмахерская 4
 hair5 = sheet.get_values('A47:AF50')       #парикмахерская 5
-count = 5
+calldata = 5                               #создаем переменную, значения которой будут использоваться в calldata бота
 
-def graf_hair(hair):                        #Функция возвращает список из списков графиков работы мастеров парикмахерской
+def graf_hair(hair):                       #Функция возвращает список из списков графиков работы мастеров парикмахерской
     global count
     graf = []
     for i in hair:                          # i - Строка с имененем мастера и местом его работы или не работы по дням
         graf_m = []                         # Формируем список с именем и графиком работы мастера
-        graf_m.append(i[0])                 # Добавляем имя мастера
+        graf_m.append(i[0])                 #Добавляем имя мастера
         l = ''                              #Формируем строку с местом выхода на работу, числом, днем недели
         for j in range(1, len(i)):
             if i[j] != '':                  # Проверяем есть ли запись о выходе на работу в ячейке
                 l += i[j] + ' ' + day_name[j] + ' ' + day_number[j] + '\n'      # Добавляем запись о работе, дне, числе
-        count += 1
-        graf_m.append(count)
+        calldata += 1
+        graf_m.append(calldata)
         graf_m.append(l)
         graf.append(graf_m)
     return graf
