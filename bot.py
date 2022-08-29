@@ -2,7 +2,7 @@ import telebot
 from telebot import types
 from telebot.types import InlineKeyboardMarkup, InlineKeyboardButton
 import pickle
-import shelve
+
 
 bot = telebot.TeleBot("5216151294:AAGqtj1iTiQpqIKIQHARZGpJmNANH6whv_k")
 places=['ПАВЛОВСКИЙ ТРАКТ','ЛЕНТА','ЛЕНИНА','ОГНИ','Новый рынок']
@@ -11,9 +11,9 @@ with open('grafic_dump.dat', 'rb') as f:
 
 @bot.message_handler(content_types=["text"])
 def default_test(message):
-    keyboard = types.InlineKeyboardMarkup()                                             
+    keyboard = types.InlineKeyboardMarkup()
     for i in places:
-        button = types.InlineKeyboardButton(text = i[0], callback_data = i.index())
+        button = types.InlineKeyboardButton(text = i, callback_data = str(places.index(i)))
         keyboard.add(button)
     bot.send_message(message.chat.id, "Выберете место из списка:", reply_markup = keyboard)
 
